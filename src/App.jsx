@@ -1,13 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { AppLayout } from "./layout/AppLayout"
+import { Home } from './Pages/Home'
 
 function App() {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: (
+        <AppLayout />
+      ),
+      errorElement: (
+        <div>Error</div>
+      ),
+      children: [
+        {
+          path: "/",
+          element: (<Home />)
+        }
+      ]
+    }
+  ])  
+
 
   return (
-    <div>
-      Sentiment Analyzer
-    </div>
+    <RouterProvider
+      router={router}
+    />
   )
 }
 
