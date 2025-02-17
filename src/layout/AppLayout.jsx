@@ -10,7 +10,7 @@ export const AppLayout = () => {
     return (
         <>
             <Header />
-                <Outlet />
+            <Outlet />
             <Footer/>
         </>
     )

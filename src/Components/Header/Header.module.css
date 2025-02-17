@@ -1,0 +1,30 @@
+@import url("../../index.css");
+
+.header-container {
+    display: flex;
+    align-items: center;
+    height: 5rem;
+    background-color: var(--secondary-bg-color);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: 0 0 0 6rem;
+    width: 40%;
+}
+
+.links-container {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    position: relative;
+    gap: 2rem;
+    padding: 0 6rem 0 0 ;
+    width: 60%;
+}
+
+.links-container *:hover {
+    cursor: pointer;
+}

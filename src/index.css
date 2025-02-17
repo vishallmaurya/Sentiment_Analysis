@@ -1,3 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --primary-bg-color: #26252a;
+    --primary-font-color: #fff ;
+    --primary-font-size: 20px;
+    --primary-font-family: 'Raleway';
+    
+    --secondary-bg-color: rgb(28, 26, 26);
+    --secondary-font-family: 'Open Sans' ;
+
+    --font-family: 'Josefin Sans' ;
+}
+
+body {
+    background-color: var(--primary-bg-color) ;
+    color: var(--primary-font-color);
+    font-size: var(--primary-font-size);
+    font-family: var(--primary-font-family);
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+}
+
 * {
     padding: 0;
     margin: 0;
