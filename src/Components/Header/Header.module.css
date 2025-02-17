@@ -12,11 +12,18 @@
     align-items: center;
     justify-content: start;
     padding: 0 0 0 6rem;
+    height: 100%;
     width: 40%;
+}
+
+.img-container {
+    width: 4rem;
+    height: 80%;
 }
 
 .links-container {
     display: flex;
+    font-family: var(--font-family) ;
     align-items: center;
     justify-content: end;
     position: relative;
@@ -27,4 +34,17 @@
 
 .links-container *:hover {
     cursor: pointer;
+}
+
+
+.link {
+    text-decoration: none;
+    color: var(--primary-font-color);
+}
+
+.active-link {
+    color: var(--bg-color);
+    padding: 0 0 0.25rem 0 ;
+    border-bottom: 4px solid white;
+    border-radius: 0.25rem;
 }
