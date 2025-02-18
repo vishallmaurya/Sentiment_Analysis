@@ -1,5 +1,8 @@
 import { useForm } from "react-hook-form"
 import styles from "./Login.module.css";
+import { useGoogleLogin  } from '@react-oauth/google';
+import { jwtDecode } from "jwt-decode"; 
+
 
 export const Login = () => {
     const { handleSubmit, reset, register } = useForm();
@@ -8,6 +11,26 @@ export const Login = () => {
         console.log(data);
         reset();
     }
+
+    const handleGoogleLoginSuccess = (tokenResponse) => {
+        // console.log("Google Login Success:", tokenResponse);
+        const idToken = tokenResponse.credential;
+        console.log("herere");
+        
+        const user = jwtDecode(idToken);
+        console.log("Decoded User Info:", user);
+    };
+    
+
+    const handleGoogleLoginFailure = () => {
+        console.log("Google Login Failed");
+    };
+
+    const googleLogin = useGoogleLogin({
+        onSuccess: handleGoogleLoginSuccess,
+        onError: handleGoogleLoginFailure,
+    });
+
 
     return (
         <div className={`${styles["login-container"]} ${styles["align"]}`}>
@@ -22,7 +45,12 @@ export const Login = () => {
                 or
                 <hr />
             </div>
-            <button className={`${styles["login-input"]} ${styles["login-btn"]}`}>Login with Google</button>
+            <button 
+                className={`${styles["login-input"]} ${styles["login-btn"]}`} 
+                onClick={() => googleLogin()}
+            >
+                Login with Google
+            </button>
         </div>
     )
 }

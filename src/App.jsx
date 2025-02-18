@@ -3,6 +3,9 @@ import { AppLayout } from "./layout/AppLayout"
 import { Home } from './Pages/Home'
 import { Login } from './Pages/Login'
 import { Profile } from './Pages/Profile'
+import { getGoogleClientId } from "../src/utils/EnvLoader.js";
+import { GoogleOAuthProvider } from '@react-oauth/google';
+
 
 function App() {
   const router = createBrowserRouter([
@@ -21,7 +24,11 @@ function App() {
         },
         {
           path: "/login",
-          element: (<Login/>)
+          element: (
+            <GoogleOAuthProvider clientId={getGoogleClientId()}>
+              <Login />
+            </GoogleOAuthProvider>
+          )
         },
         {
           path: "/profile",
