@@ -10,7 +10,9 @@ export const AppLayout = () => {
     return (
         <>
             <Header />
-            <Outlet />
+            <div style={{flex:1}}>
+                <Outlet/>
+            </div>
             <Footer/>
         </>
     )

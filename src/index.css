@@ -13,16 +13,17 @@
     --bg-color: #6674CC
 }
 
+html, body, #root {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
 body {
     background-color: var(--primary-bg-color) ;
     color: var(--primary-font-color);
     font-size: var(--primary-font-size);
     font-family: var(--primary-font-family);
-}
-
-#root {
-    display: flex;
-    flex-direction: column;
 }
 
 * {

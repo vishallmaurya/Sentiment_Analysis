@@ -1,7 +1,9 @@
+import styles from "./Profile.module.css";
+
 export const Profile = () => {
     return (
-        <div>
-            Hello Signup
+        <div className={styles["profile-container"]}>
+            
         </div>
     )
 }
