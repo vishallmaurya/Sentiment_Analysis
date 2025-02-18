@@ -22,10 +22,10 @@ export const Header = () => {
                     Login
                 </NavLink>
 
-                <NavLink to="/signup" className={({ isActive }) => 
+                <NavLink to="/profile" className={({ isActive }) => 
                     isActive ? `${styles["active-link"]} ${styles["link"]}` : styles["link"]
                 }>
-                    Sign Up
+                    Profile
                 </NavLink>
             </div>
         </div>

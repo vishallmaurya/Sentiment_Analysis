@@ -1,4 +1,4 @@
-export const SignUp = () => {
+export const Profile = () => {
     return (
         <div>
             Hello Signup
