@@ -1,8 +1,6 @@
 import { useForm } from "react-hook-form"
 import styles from "./Login.module.css";
 import { useGoogleLogin  } from '@react-oauth/google';
-import { jwtDecode } from "jwt-decode"; 
-
 
 export const Login = () => {
     const { handleSubmit, reset, register } = useForm();
@@ -12,13 +10,24 @@ export const Login = () => {
         reset();
     }
 
-    const handleGoogleLoginSuccess = (tokenResponse) => {
-        // console.log("Google Login Success:", tokenResponse);
-        const idToken = tokenResponse.credential;
-        console.log("herere");
-        
-        const user = jwtDecode(idToken);
-        console.log("Decoded User Info:", user);
+    const handleGoogleLoginSuccess = async (tokenResponse) => {
+        const accessToken = tokenResponse.access_token;
+
+        try {
+            const response = await fetch(
+                "https://www.googleapis.com/oauth2/v2/userinfo",
+                {
+                    headers: {
+                        Authorization: `Bearer ${accessToken}`,
+                    },
+                }
+            );
+
+            const user = await response.json();
+            console.log("User Info:", user);
+        } catch (error) {
+            console.error("Error fetching user info:", error);
+        }
     };
     
 

@@ -13,6 +13,25 @@
     --bg-color: #6674CC
 }
 
+::-webkit-scrollbar {
+  width: 5px; 
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f0f0f0; 
+  border-radius: 3px; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(49, 45, 45);
+  border-radius: 3px; 
+}
+
+::-webkit-scrollbar-corner {
+  background: #f0f0f0;
+}
+
 html, body, #root {
     height: 100%;
     display: flex;
