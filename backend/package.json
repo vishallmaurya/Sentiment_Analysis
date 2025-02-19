@@ -1,0 +1,19 @@
+{
+  "name": "sentiment-analyzer",
+  "version": "1.0.0",
+  "description": "Analysis of tweet's sentiment and integrated with CI/CD",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "sentiment",
+    "ml",
+    "dl",
+    "mlops",
+    "node",
+    "mern"
+  ],
+  "author": "Vishal Maurya",
+  "license": "ISC"
+}
