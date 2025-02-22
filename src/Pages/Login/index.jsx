@@ -46,7 +46,7 @@ export const Login = () => {
 
             const user = await response.json();
             console.log("User Info:", user);
-
+            setLoginData({ email: user.email });
             setGmailLogin({ isGmailLogin: true });
             setTriggerSend(true);  
         } catch (error) {
