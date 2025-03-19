@@ -34,7 +34,13 @@
 }
 
 .output {
+    font-size: 18px;
+    height: 10vh;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.output_ing {
+    height: 100%;
 }

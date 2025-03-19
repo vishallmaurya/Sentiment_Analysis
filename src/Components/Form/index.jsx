@@ -11,16 +11,19 @@ export const Form = () => {
     const [output, setOutput] = useState("");
     const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
+    const result = {
+        0: "Given tweet have negative sentiment",
+        1: "Given tweet have positive sentiment",
+        2: "Given tweet have neutral sentiment"
+     }
+    // 0 resembles negative 1 resembles positive 2 resembles neutral
 
     const onSubmit = (data) => {
         if (data.tweet?.trim() === "") {
             reset();
             return;
         }
-        
         sendData(data);
-        
-        reset(); 
     };
 
     const sendData = async (data) => {
@@ -29,6 +32,7 @@ export const Form = () => {
             const response = await axios.post(getBackendURL() + "/api/predict", data, { withCredentials: true });
             dispatch(setSentiment(response.data.data.predicted_class));
             setOutput(response.data.data.predicted_class);
+            reset();
         } catch (error) {
             console.error("Error sending data:", error);
         } finally {
@@ -43,11 +47,11 @@ export const Form = () => {
                 <button className={styles["form-btn"]} >Sentiment</button>
             </form>
             {loading && <div className={styles["output"]}>
-                <img src="/loader.gif" alt="Loading..." />
+                <img src="/loader.gif" alt="Loading..." className={styles["output_img"]} />
             </div>}
-            <div className={styles["output"]}>
-                {output}
-            </div>
+            {!loading && <div className={styles["output"]}>
+                {result[output]}
+            </div>}
         </div>
     )
 }

@@ -16,7 +16,6 @@ export const Home = () => {
                     <p><i>"Gain deeper insights into user opinions and trends."</i></p>
                 </div>
                 <div className={styles["content-img"]}>
-                    {/* <img src="sentiment-Photoroom.png" alt="" /> */}
                     <SentimentMeter/>
                 </div>
             </div>

@@ -42,18 +42,22 @@
     width: 30px;
     background-color: #bbb;
     border-radius: 50%;
-    transition: transform 0.3s ease;
+    transition: transform 1s ease-in-out;
+    transform: translate(-50%, -50%) rotate(10deg);
 }
 
 .positive {
+    transition: transform 1s ease-in-out;
     transform: translate(-50%, -50%) rotate(90deg);
 }
 
 .negative {
+    transition: transform 1s ease-in-out;
     transform: translate(-50%, -50%) rotate(-90deg);
 }
 
 .neutral {
+    transition: transform 1s ease-in-out;
     transform: translate(-50%, -50%) rotate(10deg);
 }
 
