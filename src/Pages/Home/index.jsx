@@ -1,5 +1,6 @@
 import styles from "./Home.module.css";
 import { Form } from "../../Components/Form";
+import { SentimentMeter } from "../../Components/SentimentMeter";
 
 export const Home = () => {
     return (
@@ -15,7 +16,8 @@ export const Home = () => {
                     <p><i>"Gain deeper insights into user opinions and trends."</i></p>
                 </div>
                 <div className={styles["content-img"]}>
-                    <img src="sentiment-Photoroom.png" alt="" />
+                    {/* <img src="sentiment-Photoroom.png" alt="" /> */}
+                    <SentimentMeter/>
                 </div>
             </div>
             <Form />

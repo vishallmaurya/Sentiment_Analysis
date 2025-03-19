@@ -43,7 +43,6 @@ export const Form = () => {
                 <img src="/loader.gif" alt="Loading..." />
             </div>}
             <div className={styles["output"]}>
-                {console.log(output)}
                 {output}
             </div>
         </div>
