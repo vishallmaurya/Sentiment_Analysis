@@ -1,14 +1,16 @@
-import { useEffect } from "react";
 import styles from "./Form.module.css";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import axios from "axios";
 import { getBackendURL } from "../../utils/EnvLoader.js";
+import { setSentiment } from "../../utils/store.js";
+import { useDispatch } from "react-redux";
 
 export const Form = () => {
     const { handleSubmit, register, reset } = useForm();
     const [output, setOutput] = useState("");
     const [loading, setLoading] = useState(false);
+    const dispatch = useDispatch();
 
     const onSubmit = (data) => {
         if (data.tweet?.trim() === "") {
@@ -25,6 +27,7 @@ export const Form = () => {
         try {
             setLoading(true);
             const response = await axios.post(getBackendURL() + "/api/predict", data, { withCredentials: true });
+            dispatch(setSentiment(response.data.data.predicted_class));
             setOutput(response.data.data.predicted_class);
         } catch (error) {
             console.error("Error sending data:", error);

@@ -6,7 +6,6 @@ import { Profile } from './Pages/Profile'
 import { getGoogleClientId } from "../src/utils/EnvLoader.js";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
-
 function App() {
   const router = createBrowserRouter([
     {
@@ -40,9 +39,7 @@ function App() {
 
 
   return (
-    <RouterProvider
-      router={router}
-    />
+      <RouterProvider router={router} />
   )
 }
 
