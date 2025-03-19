@@ -72,9 +72,7 @@ export const Login = () => {
                 <button className={`${styles["login-input"]} ${styles["login-btn"]}`}>Login</button>
             </form>
             <div className={`${styles["partition"]}`}>
-                <hr />
                 or
-                <hr />
             </div>
             <button className={`${styles["login-input"]} ${styles["login-btn"]}`} onClick={() => googleLogin()}>
                 Login with Google

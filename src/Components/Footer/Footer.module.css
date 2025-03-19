@@ -6,29 +6,6 @@
     gap: 1rem;
     padding: 3rem 0 3rem 0;
     justify-content: center;
-    /* height: 10rem; */
     flex-direction: column;
     background-color: var(--secondary-bg-color);
 }
-/* 
-.logo-container {
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    padding: 0 0 0 6rem;
-    width: 40%;
-}
-
-.links-container {
-    display: flex;
-    align-items: center;
-    justify-content: end;
-    position: relative;
-    gap: 2rem;
-    padding: 0 6rem 0 0 ;
-    width: 60%;
-}
-
-.links-container *:hover {
-    cursor: pointer;
-} */

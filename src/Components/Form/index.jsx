@@ -16,7 +16,7 @@ export const Form = () => {
     return (
         <div className={styles["form-container"]}>
             <form onSubmit={handleSubmit(onSubmit)} className={styles["form"]}>
-                <input type="text"  {...register("data")} className={styles["form-input"]}/>
+                <input type="text"  {...register("data")} placeholder="enter you tweet here..." className={styles["form-input"]}/>
                 <button className={styles["form-btn"]} >Sentiment</button>
             </form>
             <div className={styles["output"]}>
