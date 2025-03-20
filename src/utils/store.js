@@ -1,4 +1,6 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+import { getBackendURL } from "./EnvLoader";
 
 const sentimentSlice = createSlice({
     name: "sentiment",
@@ -10,11 +12,33 @@ const sentimentSlice = createSlice({
     }
 });
 
+
+const getUser = async () => {
+    try {
+        const response = await axios.post(getBackendURL() + "/users/current-user", {}, { withCredentials: true });
+        return response;
+    } catch (error) {
+        return null;
+    }
+}
+
+const userSlice = createSlice({
+    name: "user",
+    initialState: { user: await getUser() },
+    reducers: {
+        setUser: (state, action) => {
+            state.user = action.payload;
+        }
+    }
+});
+
 export const { setSentiment } = sentimentSlice.actions;
+export const { setUser } = userSlice.actions;
 
 const store = configureStore({
     reducer: {
-        sentiment: sentimentSlice.reducer
+        sentiment: sentimentSlice.reducer,
+        user: userSlice.reducer
     }
 });
 

@@ -4,12 +4,15 @@ import styles from "./Login.module.css";
 import { useGoogleLogin } from "@react-oauth/google";
 import { getBackendURL } from "../../utils/EnvLoader.js";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../utils/store.js";
 
 export const Login = () => {
     const { handleSubmit, reset, register } = useForm();
     const [loginData, setLoginData] = useState({ email: "", password: "" });
     const [gmailLogin, setGmailLogin] = useState({ isGmailLogin: false });
     const [triggerSend, setTriggerSend] = useState(false);  
+    const dispatch = useDispatch();
     
     useEffect(() => {
         if (triggerSend) {
@@ -21,16 +24,14 @@ export const Login = () => {
     const sendData = async () => {
         try {
             let data = { ...loginData, ...gmailLogin };
-            console.log("Sending Data:", data);
             const response = await axios.post(getBackendURL() + "/users/register", data, { withCredentials: true });
-            console.log(response);
+            dispatch(setUser(response.data));
         } catch (error) {
             console.error("Error sending data:", error);
         }
     };
 
     const onSubmit = (data) => {
-        console.log("Form Data:", data);
         setLoginData(data);
         setTriggerSend(true);  
         reset();
@@ -45,7 +46,6 @@ export const Login = () => {
             });
 
             const user = await response.json();
-            console.log("User Info:", user);
             setLoginData({ email: user.email });
             setGmailLogin({ isGmailLogin: true });
             setTriggerSend(true);  
