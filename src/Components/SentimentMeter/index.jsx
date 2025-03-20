@@ -4,20 +4,22 @@ import { useSelector } from "react-redux";
 
 export const SentimentMeter = () => {
     const output = useSelector((state) => state.sentiment.sentimentScore);
-    useEffect(() => {
-        console.log("Sentiment Score Updated:", output);
-    }, [output]);
+    
+    const getRotation = () => {        
+        switch (output) {            
+            case 1: return "90deg";   
+            case 2: return "10deg";   
+            case 0: return "-90deg";  
+            default: return "10deg";  
+        }
+    };
+    
     return (
         <div className={`${styles["container"]} ${styles['center']}`}>
             <div className={styles["meter"]}>
                 <div className={`${styles["outer-circle"]} ${styles['center']}`}>
                     <div className={`${styles["inner-circle"]} `}>
-                        {output == 1 && <div className={`${styles["needle"]} ${styles["positive"]} ${styles["center"]}`}></div>}
-                        {output == 2 && <div className={`${styles["needle"]} ${styles["neutral"]} ${styles["center"]}`}></div>}
-                        {output == 0 && <div className={`${styles["needle"]} ${styles["negative"]} ${styles["center"]}`}></div>}
-                        {console.log(output)
-                        }
-                        {/* <div class={`${styles["needle"]} ${styles["center"]}`}></div> */}
+                        <div className={`${styles["needle"]} ${styles['center']}`} style={{ transform: `rotate(${getRotation()})` }}></div>
                     </div>
                 </div>
             </div>
