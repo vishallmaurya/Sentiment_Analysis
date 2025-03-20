@@ -37,10 +37,7 @@ export const Header = () => {
                 }>
                     Login
                 </NavLink>}
-{/* logout will be added soon */}
-                {userData && userData?.statusCode === 200 && <NavLink to="/" onClick={logoutHandler} className={({ isActive }) => 
-                    isActive ? `${styles["active-link"]} ${styles["link"]}` : styles["link"]
-                }>
+                {userData && userData?.statusCode === 200 && <NavLink to="/" onClick={logoutHandler} className={styles["link"]}>
                     Logout
                 </NavLink>}
 

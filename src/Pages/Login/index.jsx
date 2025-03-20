@@ -6,6 +6,7 @@ import { getBackendURL } from "../../utils/EnvLoader.js";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../utils/store.js";
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
     const { handleSubmit, reset, register } = useForm();
@@ -13,6 +14,7 @@ export const Login = () => {
     const [gmailLogin, setGmailLogin] = useState({ isGmailLogin: false });
     const [triggerSend, setTriggerSend] = useState(false);  
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     
     useEffect(() => {
         if (triggerSend) {
@@ -26,6 +28,7 @@ export const Login = () => {
             let data = { ...loginData, ...gmailLogin };
             const response = await axios.post(getBackendURL() + "/users/register", data, { withCredentials: true });
             dispatch(setUser(response.data));
+            navigate("/");
         } catch (error) {
             console.error("Error sending data:", error);
         }
