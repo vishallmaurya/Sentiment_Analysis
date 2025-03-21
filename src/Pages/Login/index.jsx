@@ -12,7 +12,9 @@ export const Login = () => {
     const { handleSubmit, reset, register } = useForm();
     const [loginData, setLoginData] = useState({ email: "", password: "" });
     const [gmailLogin, setGmailLogin] = useState({ isGmailLogin: false });
-    const [triggerSend, setTriggerSend] = useState(false);  
+    const [triggerSend, setTriggerSend] = useState(false);
+    const [loginerror, setError] = useState("");
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
     
@@ -28,11 +30,10 @@ export const Login = () => {
             let data = { ...loginData, ...gmailLogin };
             const response = await axios.post(getBackendURL() + "/users/register", data, { withCredentials: true });
             dispatch(setUser(response.data));
-            console.log(response.data);
             
             navigate("/");
         } catch (error) {
-            console.error("Error sending data:", error);
+            setError("Some error occured!!");
         }
     };
 
@@ -55,12 +56,12 @@ export const Login = () => {
             setGmailLogin({ isGmailLogin: true });
             setTriggerSend(true);  
         } catch (error) {
-            console.error("Error fetching user info:", error);
+            setError("Some error occured!");
         }
     };
 
     const handleGoogleLoginFailure = () => {
-        console.log("Google Login Failed");
+        setError("Google Login Failed");
     };
 
     const googleLogin = useGoogleLogin({
@@ -69,19 +70,25 @@ export const Login = () => {
     });
 
     return (
-        <div className={`${styles["login-container"]} ${styles["align"]}`}>
-            <h2 style={{ marginBottom: "3rem" }}>Login to Analyzer</h2>
-            <form onSubmit={handleSubmit(onSubmit)} className={`${styles["login-form-container"]} ${styles["align"]}`}>
-                <input type="text" placeholder="e.g. abc@gmail.com" {...register("email")} className={styles["login-input"]} />
-                <input type="password" placeholder="123@password" {...register("password")} className={styles["login-input"]} />
-                <button className={`${styles["login-input"]} ${styles["login-btn"]}`}>Login</button>
-            </form>
-            <div className={`${styles["partition"]}`}>
-                or
+        <div className={`${styles["align"]}`}>
+            {loginerror !== "" && <div className={`${styles["login-error"]}`}>
+                <div>{loginerror}</div>
+                <div className={`${styles["cross"]}`} onClick={()=>{setError("")}}>&#10006;</div>
+            </div>}
+            <div className={`${styles["login-container"]} ${styles["align"]}`}>
+                <h2 style={{ marginBottom: "3rem" }}>Login to Analyzer</h2>
+                <form onSubmit={handleSubmit(onSubmit)} className={`${styles["login-form-container"]} ${styles["align"]}`}>
+                    <input type="text" placeholder="e.g. abc@gmail.com" {...register("email")} className={styles["login-input"]} />
+                    <input type="password" placeholder="123@password" {...register("password")} className={styles["login-input"]} />
+                    <button className={`${styles["login-input"]} ${styles["login-btn"]}`}>Login</button>
+                </form>
+                <div className={`${styles["partition"]}`}>
+                    or continue with
+                </div>
+                <button className={`${styles["login-input"]} ${styles["login-btn"]}`} onClick={() => googleLogin()}>
+                    Google
+                </button>
             </div>
-            <button className={`${styles["login-input"]} ${styles["login-btn"]}`} onClick={() => googleLogin()}>
-                Login with Google
-            </button>
         </div>
     );
 };

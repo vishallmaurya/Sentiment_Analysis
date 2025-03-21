@@ -7,6 +7,27 @@
     flex-direction: column;
 }
 
+.login-error {
+    height: 3rem ;
+    background-color: rgb(195, 51, 51);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.3rem 0.5rem 0.3rem 1rem;
+    width: 99%;
+
+    margin: 1rem ;
+}
+
+.cross {
+    display: flex ;
+    height: 100%;
+}
+
+.cross:hover {
+    cursor: pointer;
+}
+
 .login-container {
     position: relative;
     overflow: hidden;
@@ -18,7 +39,7 @@
     transition: all 0.3s ease-in-out;
     margin: auto;
     margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 }
 
 .login-container:hover {

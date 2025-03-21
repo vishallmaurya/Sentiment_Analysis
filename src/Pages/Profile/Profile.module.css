@@ -17,13 +17,21 @@
     margin-top: 2rem;
 }
 
+.tweet-col {
+    width: 70%;
+}
+
 th {
     font-size: 20px;
+    padding-bottom: 1rem;
 }
 
 td {
     padding: 1rem;
-    
+}
+
+.row-data {
+    box-shadow: 2px 2px 14px rgba(218, 213, 213, 0.3);
 }
 
 
