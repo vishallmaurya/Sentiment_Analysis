@@ -24,7 +24,7 @@ export const Profile = () => {
     
     return (
         <div className={styles["profile-container"]}>
-            <h3> Welcome <span className={ styles["profile-id"] }> { userData.data.data.email } </span>{historyData > 0 && <span>, here is your tweets 🎉</span>}</h3>
+            <h3> Welcome <span className={ styles["profile-id"] }> { userData.data.user.email } </span>{historyData > 0 && <span>, here is your tweets 🎉</span>}</h3>
             
             {
                 historyData.length <= 0 &&

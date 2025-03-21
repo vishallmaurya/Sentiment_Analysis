@@ -16,7 +16,7 @@ const sentimentSlice = createSlice({
 const getUser = async () => {
     try {
         const response = await axios.post(getBackendURL() + "/users/current-user", {}, { withCredentials: true });
-        return response;
+        return response.data;
     } catch (error) {
         return null;
     }

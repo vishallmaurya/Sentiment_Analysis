@@ -32,12 +32,12 @@ export const Header = () => {
                     Home
                 </NavLink>
                 
-                {!userData && userData?.status !== 200 && <NavLink to="/login" className={({ isActive }) => 
+                {!userData && userData?.statusCode !== 200 && <NavLink to="/login" className={({ isActive }) => 
                     isActive ? `${styles["active-link"]} ${styles["link"]}` : styles["link"]
                 }>
                     Login
                 </NavLink>}
-                {userData && userData?.status === 200 && <NavLink to="/" onClick={logoutHandler} className={styles["link"]}>
+                {userData && userData?.statusCode === 200 && <NavLink to="/" onClick={logoutHandler} className={styles["link"]}>
                     Logout
                 </NavLink>}
 
