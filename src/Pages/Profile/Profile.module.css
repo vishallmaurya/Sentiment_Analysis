@@ -1,2 +1,29 @@
-/* .profile-container { */
-/* } */
+.profile-container {
+    margin: 2rem 0 2rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.profile-id {
+    color: var(--bg-color);
+}
+
+.profile-list {
+    width: 80%;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+th {
+    font-size: 20px;
+}
+
+td {
+    padding: 1rem;
+    
+}
+
+

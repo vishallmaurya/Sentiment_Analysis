@@ -28,6 +28,8 @@ export const Login = () => {
             let data = { ...loginData, ...gmailLogin };
             const response = await axios.post(getBackendURL() + "/users/register", data, { withCredentials: true });
             dispatch(setUser(response.data));
+            console.log(response.data);
+            
             navigate("/");
         } catch (error) {
             console.error("Error sending data:", error);
