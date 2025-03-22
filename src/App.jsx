@@ -5,6 +5,7 @@ import { Login } from './Pages/Login'
 import { Profile } from './Pages/Profile'
 import { getGoogleClientId } from "../src/utils/EnvLoader.js";
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import { ResetPassword } from './Pages/ResetPassword/index.jsx'
 
 function App() {
   const router = createBrowserRouter([
@@ -32,6 +33,10 @@ function App() {
         {
           path: "/profile",
           element: (<Profile/>)
+        },
+        {
+          path: "/reset-password/:token",
+          element: (<ResetPassword/>)
         }
       ]
     }

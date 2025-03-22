@@ -14,6 +14,8 @@ export const Login = () => {
     const [gmailLogin, setGmailLogin] = useState({ isGmailLogin: false });
     const [triggerSend, setTriggerSend] = useState(false);
     const [loginerror, setError] = useState("");
+    const [showForgotPwd, setShowForgotPwd] = useState(false);
+    const [forgotPwdData, setForgotPwdData] = useState({ email: ""});
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -23,22 +25,29 @@ export const Login = () => {
             sendData();
             setTriggerSend(false);  
         }
-    }, [loginData, gmailLogin]);  
+    }, [loginData, gmailLogin, forgotPwdData]);  
     
     const sendData = async () => {
         try {
-            let data = { ...loginData, ...gmailLogin };
-            const response = await axios.post(getBackendURL() + "/users/register", data, { withCredentials: true });
-            dispatch(setUser(response.data));
-            
-            navigate("/");
+            if (!showForgotPwd) {
+                const data = { ...loginData, ...gmailLogin };
+                const response = await axios.post(getBackendURL() + "/users/register", data, { withCredentials: true });
+                dispatch(setUser(response.data));
+                navigate("/");
+            } else {
+                await handleForgotPassword();
+            }
         } catch (error) {
             setError("Some error occured!!");
         }
     };
 
     const onSubmit = (data) => {
-        setLoginData(data);
+        if(!showForgotPwd) 
+            setLoginData(data);
+        else 
+            setForgotPwdData(data);
+            
         setTriggerSend(true);  
         reset();
     };
@@ -69,26 +78,49 @@ export const Login = () => {
         onError: handleGoogleLoginFailure,
     });
 
+    const handleForgotPassword = async () => {
+        try {
+            await axios.post(getBackendURL() + "/users/forget-password", forgotPwdData, {withCredentials: true});
+            alert("Password reset successful!");
+            setShowForgotPwd(false);
+        } catch (error) {
+            setError("Failed to reset password");
+        }
+    };
+
+
     return (
         <div className={`${styles["align"]}`}>
             {loginerror !== "" && <div className={`${styles["login-error"]}`}>
                 <div>{loginerror}</div>
                 <div className={`${styles["cross"]}`} onClick={()=>{setError("")}}>&#10006;</div>
             </div>}
-            <div className={`${styles["login-container"]} ${styles["align"]}`}>
+           {!showForgotPwd && <div className={`${styles["login-container"]} ${styles["align"]}`}>
                 <h2 style={{ marginBottom: "3rem" }}>Login to Analyzer</h2>
                 <form onSubmit={handleSubmit(onSubmit)} className={`${styles["login-form-container"]} ${styles["align"]}`}>
                     <input type="text" placeholder="e.g. abc@gmail.com" {...register("email")} className={styles["login-input"]} />
                     <input type="password" placeholder="123@password" {...register("password")} className={styles["login-input"]} />
                     <button className={`${styles["login-input"]} ${styles["login-btn"]}`}>Login</button>
                 </form>
+                <div className={styles["forgot-pwd-container"]}> <span onClick={() => setShowForgotPwd(true)} className={styles["forgot-pwd"]}>forgot password?</span></div>
                 <div className={`${styles["partition"]}`}>
                     or continue with
                 </div>
                 <button className={`${styles["login-input"]} ${styles["login-btn"]}`} onClick={() => googleLogin()}>
                     Google
                 </button>
-            </div>
+            </div>}
+
+            {showForgotPwd && (
+                <div className={`${styles["login-container"]} ${styles["align"]}`}>
+                    <h2 style={{ marginBottom: "3rem" }}>Reset Password</h2>
+                    <form onSubmit={handleSubmit(onSubmit)} className={`${styles["login-form-container"]} ${styles["align"]}`}>
+                        <input type="text" placeholder="e.g. abc@gmail.com" {...register("email")} className={styles["login-input"]} />
+                        <button className={`${styles["login-input"]} ${styles["login-btn"]}`}>Submit</button>
+                    </form>
+                    <button className={`${styles["login-input"]} ${styles["login-btn"]}`} onClick={()=>{setShowForgotPwd(false)}}>Cancel</button>
+                </div>
+            )}
         </div>
     );
 };
