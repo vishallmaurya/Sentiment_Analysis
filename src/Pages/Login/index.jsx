@@ -13,7 +13,7 @@ export const Login = () => {
     const [loginData, setLoginData] = useState({ email: "", password: "" });
     const [gmailLogin, setGmailLogin] = useState({ isGmailLogin: false });
     const [triggerSend, setTriggerSend] = useState(false);
-    const [loginerror, setError] = useState("");
+    const [loginmsg, setLoginMsg] = useState({msg: "", color: ""});
     const [showForgotPwd, setShowForgotPwd] = useState(false);
     const [forgotPwdData, setForgotPwdData] = useState({ email: ""});
 
@@ -33,12 +33,13 @@ export const Login = () => {
                 const data = { ...loginData, ...gmailLogin };
                 const response = await axios.post(getBackendURL() + "/users/register", data, { withCredentials: true });
                 dispatch(setUser(response.data));
+                setLoginMsg({msg: "Logged in successfully!!", color: "green"});
                 navigate("/");
             } else {
                 await handleForgotPassword();
             }
         } catch (error) {
-            setError("Some error occured!!");
+            setLoginMsg({msg: "Some error occured!!", color: "red"});
         }
     };
 
@@ -65,12 +66,12 @@ export const Login = () => {
             setGmailLogin({ isGmailLogin: true });
             setTriggerSend(true);  
         } catch (error) {
-            setError("Some error occured!");
+            setLoginMsg({msg: "Some error occured!", color: "red"});
         }
     };
 
     const handleGoogleLoginFailure = () => {
-        setError("Google Login Failed");
+        setLoginMsg({msg: "Google Login Failed", color: "red"});
     };
 
     const googleLogin = useGoogleLogin({
@@ -81,19 +82,19 @@ export const Login = () => {
     const handleForgotPassword = async () => {
         try {
             await axios.post(getBackendURL() + "/users/forget-password", forgotPwdData, {withCredentials: true});
-            alert("Password reset successful!");
+            setLoginMsg({ msg: "password reset link is sent to your email id!!", color: "green" });
             setShowForgotPwd(false);
         } catch (error) {
-            setError("Failed to reset password");
+            setLoginMsg({msg: "Failed to reset password", color: "red"});
         }
     };
 
 
     return (
         <div className={`${styles["align"]}`}>
-            {loginerror !== "" && <div className={`${styles["login-error"]}`}>
-                <div>{loginerror}</div>
-                <div className={`${styles["cross"]}`} onClick={()=>{setError("")}}>&#10006;</div>
+            {loginmsg.msg !== "" && <div className={`${styles["login-msg"]} ${loginmsg.color === "red" ? styles["failure"] : styles["success"] } ` }>
+                <div>{loginmsg.msg}</div>
+                <div className={`${styles["cross"]}`} onClick={() => { setLoginMsg({msg: "", color: "green"})}}>&#10006;</div>
             </div>}
            {!showForgotPwd && <div className={`${styles["login-container"]} ${styles["align"]}`}>
                 <h2 style={{ marginBottom: "3rem" }}>Login to Analyzer</h2>

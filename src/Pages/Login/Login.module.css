@@ -7,9 +7,16 @@
     flex-direction: column;
 }
 
-.login-error {
+.failure {
+    background-color: var(--failure) ;
+}
+
+.success {
+    background-color: var(--success) ;
+}
+
+.login-msg {
     height: 3rem ;
-    background-color: rgb(195, 51, 51);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -77,6 +84,11 @@
 
 .forgot-pwd {
     color: white;
+    text-decoration: underline;
+}
+
+.forgot-pwd:hover {
+    cursor: pointer;
 }
 
 .login-btn:hover {

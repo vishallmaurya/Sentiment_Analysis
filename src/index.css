@@ -10,7 +10,10 @@
     --secondary-font-family: 'Open Sans' ;
 
     --font-family: 'Josefin Sans' ;
-    --bg-color: #6674CC
+    --bg-color: #6674CC;
+
+    --success: rgb(40, 140, 40) ;
+    --failure: rgb(195, 51, 51) ; 
 }
 
 ::-webkit-scrollbar {
