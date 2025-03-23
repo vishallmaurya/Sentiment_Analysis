@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 export const Form = () => {
     const { handleSubmit, register, reset } = useForm();
     const [output, setOutput] = useState("");
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState();
     const dispatch = useDispatch();
     const result = {
         0: "Given tweet have negative sentiment",

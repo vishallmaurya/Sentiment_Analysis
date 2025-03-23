@@ -2,18 +2,17 @@
 
 .container {
     display: flex;
-    /* justify-content: center; */
-    /* align-items: center; */
     flex-direction: column;
     width: 100%;
-    border: 2px solid red;
     padding: 3rem 0 3rem 0;
+    border: 2px solid red;
 }
 
 .heading {
     padding: 0 0 2rem 0;
     display: flex;
     justify-content: center;
+    text-align: center;
     align-items: center;
 }
 
@@ -28,6 +27,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    text-align: center;
     gap: 1rem;
     width: 50vw;
 }
@@ -47,6 +47,10 @@
 
     .content-body {
         flex-direction: column;
+    }
+
+    .content {
+        font-size: 12px;
     }
 }
   

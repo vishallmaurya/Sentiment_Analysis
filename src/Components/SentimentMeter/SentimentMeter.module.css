@@ -3,7 +3,6 @@
     justify-content: center;
     align-items: center;
     width: 80vh;
-    border: 2px solid blue;
     height: 45vh;
 }
 
@@ -23,18 +22,9 @@
     height: 100%;
     width: 100%;
     background-image: url("meter.png");
-    border: 2px solid red;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-}
-
-@media (max-width: 768px) {
-    .container , .meter{
-        width: 40vh;
-        aspect-ratio: 1;
-    }
-        
 }
 
 .inner-circle{
@@ -77,3 +67,27 @@
     justify-content: center;
 }
 
+@media (max-width: 768px) {
+    .container , .meter{
+        width: 50vh;
+        aspect-ratio: 1;
+    }
+    
+    .outer-circle {
+        background-size: 70vh;
+    }
+
+    .inner-circle {
+        transform: translateY(9vh);
+    }
+
+    .needle {
+        height:4vh;
+        width: 4vw;
+    }
+
+    .needle::before {
+        width: 2.5vw;
+	    height: 8vh;
+    }
+}

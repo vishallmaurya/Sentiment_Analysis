@@ -5,10 +5,10 @@
     padding: 1rem 0 1rem 0;
     position: relative;
     align-items: center;
+    border: 2px solid red;
     justify-content: center;
     background-color: var(--secondary-bg-color);
     width: 100%;
-    border:  2px solid white;
 }
 
 .logo-container {
