@@ -12,13 +12,13 @@
 }
 
 .profile-list {
-    width: 80%;
+    width: 80vw;
     text-align: center;
     margin-top: 2rem;
 }
 
 .tweet-col {
-    width: 70%;
+    width: 70vw;
 }
 
 th {

@@ -9,21 +9,21 @@
 .form {
     display: flex;
     justify-content: center;
-    padding: 5rem 0 3rem 0;
+    padding: 4vw 0 0 0;
     gap: 1rem;
 }
 
 .form-input{
     font-size: var(--primary-font-size);
-    padding: 1rem;
-    width: 60%;
-    border-radius: 1rem;
+    padding: 1vw;
+    width: 60vw;
+    border-radius: 1vw;
     outline: none;
 }
 
 .form-btn {
     font-size: var(--primary-font-size);
-    padding: 0 2rem 0 2rem ;
+    padding: 0 2vw 0 2vw ;
     border-radius: 1rem;
     color: var(--primary-font-color);
     background-color: var(--bg-color);
@@ -41,6 +41,6 @@
     align-items: center;
 }
 
-.output_ing {
-    height: 100%;
+.output_img {
+    height: 15vh;
 }
