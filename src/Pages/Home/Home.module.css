@@ -2,7 +2,11 @@
 
 .container {
     display: flex;
+    /* justify-content: center; */
+    /* align-items: center; */
     flex-direction: column;
+    width: 100%;
+    border: 2px solid red;
     padding: 3rem 0 3rem 0;
 }
 
@@ -36,3 +40,13 @@
     height: 40vh;
 }
 
+@media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+    }
+
+    .content-body {
+        flex-direction: column;
+    }
+}
+  
