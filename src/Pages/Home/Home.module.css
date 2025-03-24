@@ -5,7 +5,6 @@
     flex-direction: column;
     width: 100%;
     padding: 3rem 0 3rem 0;
-    border: 2px solid red;
 }
 
 .heading {
@@ -17,6 +16,7 @@
 }
 
 .content-body {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;

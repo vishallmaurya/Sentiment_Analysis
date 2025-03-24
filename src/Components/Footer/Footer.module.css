@@ -2,12 +2,19 @@
 
 .footer-container {
     display: flex;
-    align-items: center;
-    gap: 1rem;
-    border: 2px solid red;
+    justify-content: center;
     width: 100%;
     padding: 3rem 0 3rem 0;
-    justify-content: center;
-    flex-direction: column;
     background-color: var(--secondary-bg-color);
+}
+
+.footer-container-child {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    height: 100%;
+    text-align: center;
+    flex-direction: column;
 }
