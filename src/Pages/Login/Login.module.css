@@ -113,4 +113,16 @@
     flex: 1;
     border-top: 2px solid gainsboro;
     margin: 0 10px;
-  }
+}
+
+
+
+  @media (max-width: 768px) {
+    .login-container {
+      flex-direction: column;
+      width: 80%;
+      padding: 1rem;
+      text-align: center;
+    }
+}
+  

@@ -23,34 +23,34 @@ export const Header = () => {
         <div className={styles["header-container"]}>
             <div className={styles["header-child"]}>
 
-            <div className={styles["logo-container"]}>
-                <a href="\">
-                    <img className={styles["img-container"]} src="logo.png" alt="" />
-                </a>
-            </div>
-            <div className={styles["links-container"]}>
-                <NavLink to="/" className={({ isActive }) => 
-                    isActive ? `${styles["active-link"]} ${styles["link"]}` : styles["link"]
-            }>
-                    Home
-                </NavLink>
-                
-                {!userData && userData?.statusCode !== 200 && <NavLink to="/login" className={({ isActive }) => 
-                    isActive ? `${styles["active-link"]} ${styles["link"]}` : styles["link"]
-            }>
-                    Login
-                </NavLink>}
-                {userData && userData?.statusCode === 200 && <NavLink to="/" onClick={logoutHandler} className={styles["link"]}>
-                    Logout
-                </NavLink>}
+                <div className={styles["logo-container"]}>
+                    <a href="\">
+                        <img className={styles["img-container"]} src="logo.png" alt="" />
+                    </a>
+                </div>
+                <div className={styles["links-container"]}>
+                    <NavLink to="/" className={({ isActive }) => 
+                        isActive ? `${styles["active-link"]} ${styles["link"]}` : styles["link"]
+                }>
+                        Home
+                    </NavLink>
+                    
+                    {!userData && userData?.statusCode !== 200 && <NavLink to="/login" className={({ isActive }) => 
+                        isActive ? `${styles["active-link"]} ${styles["link"]}` : styles["link"]
+                }>
+                        Login
+                    </NavLink>}
+                    {userData && userData?.statusCode === 200 && <NavLink to="/" onClick={logoutHandler} className={styles["link"]}>
+                        Logout
+                    </NavLink>}
 
 
-                {userData && <NavLink to="/profile" className={({ isActive }) => 
-                    isActive ? `${styles["active-link"]} ${styles["link"]}` : styles["link"]
-            }>
-                    Profile
-                </NavLink>}
-            </div>
+                    {userData && <NavLink to="/profile" className={({ isActive }) => 
+                        isActive ? `${styles["active-link"]} ${styles["link"]}` : styles["link"]
+                }>
+                        Profile
+                    </NavLink>}
+                </div>
             </div>
         </div>
     )
