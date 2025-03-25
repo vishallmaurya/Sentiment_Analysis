@@ -34,8 +34,9 @@ export const Form = () => {
             setOutput(response.data.data.predicted_class);
             reset();
         } catch (error) {
-            console.error("Error sending data:", error);
-        } finally {
+            console.error("Error sending data:", error.response ? error.response.data : error);
+        }
+         finally {
             setLoading(false);
         }
     };
