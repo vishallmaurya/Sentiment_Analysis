@@ -8,4 +8,7 @@ export default defineConfig({
       "Cross-Origin-Embedder-Policy": "credentialless",
     },
   },
+  build: {
+    target: "esnext",
+  },
 });
