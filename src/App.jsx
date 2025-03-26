@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { AppLayout } from "./layout/AppLayout"
 import { getGoogleClientId } from "../src/utils/EnvLoader.js";
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import { Loader } from './Pages/Loader/index.jsx';
 
 const Home = lazy(() => 
   import("./Pages/Home/index.jsx").then(module => ({ default: module.Home }))
@@ -44,7 +45,7 @@ function App() {
 
 
   return (
-    <Suspense fallback={<div style={{ textAlign: "center", marginTop: "50px" }}>Loading...</div>}>
+    <Suspense fallback={<Loader/>}>
       <RouterProvider router={router} />
     </Suspense>
   );
