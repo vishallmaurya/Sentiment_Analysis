@@ -29,17 +29,40 @@ function App() {
       element: (<AppLayout />),
       errorElement: (<ErrorFallback/>),
       children: [
-        {path: "/",element: (<Home />)},
+        {
+          path: "/",
+          element: (
+            <Suspense fallback={<div>Loading Home...</div>}>
+              <Home />
+            </Suspense>
+          ),
+        },
         {
           path: "/login",
           element: (
             <GoogleOAuthProvider clientId={getGoogleClientId()}>
-              <Login />
+              <Suspense fallback={<div>Loading Login...</div>}>
+                <Login />
+              </Suspense>
             </GoogleOAuthProvider>
           )
         },
-        { path: "/profile", element: (<Profile/>) },
-        { path: "/reset-password/:token", element: (<ResetPassword/>) }
+        {
+          path: "/profile", 
+          element: (
+            <Suspense fallback={<div>Loading Profile...</div>}>
+              <Profile />
+            </Suspense>
+          ),
+         },
+        {
+          path: "/reset-password/:token", 
+          element: (
+            <Suspense fallback={<div>Loading Reset Password...</div>}>
+              <ResetPassword />
+            </Suspense>
+          ),
+        }
       ]
     }
   ])  
