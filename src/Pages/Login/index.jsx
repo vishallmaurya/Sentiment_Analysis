@@ -47,6 +47,7 @@ export const Login = () => {
     const onSubmit = (data) => {
         if (Object.values(data).some(value => value === "" || value === null || value === undefined)) {
             setLoginMsg({ msg: "Please fill the required field", color: "red" });
+            reset();
             return;
         }
 
