@@ -14,12 +14,20 @@ const ResetPassword = lazy(() => import("./Pages/ResetPassword/index.jsx"));
 // import { Profile } from './Pages/Profile'
 // import { ResetPassword } from './Pages/ResetPassword/index.jsx'
 
+const ErrorFallback = ({ error }) => (
+  <div style={{ color: "red", textAlign: "center" }}>
+    <h2>Something went wrong!</h2>
+    <p>{error?.message || "An unknown error occurred"}</p>
+  </div>
+);
+
+
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
       element: (<AppLayout />),
-      errorElement: (<div>Error</div>),
+      errorElement: (<ErrorFallback/>),
       children: [
         {path: "/",element: (<Home />)},
         {
