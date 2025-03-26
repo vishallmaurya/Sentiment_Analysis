@@ -20,7 +20,7 @@ export const Form = () => {
 
     const onSubmit = (data) => {
         if (data.tweet?.trim() === "") {
-            reset();
+            setOutput("Please write the tweet!!");
             return;
         }
         sendData(data);
@@ -33,7 +33,7 @@ export const Form = () => {
             const response = await axios.post(url , data, { withCredentials: true });
             
             dispatch(setSentiment(response.data.data.predicted_class));
-            setOutput(response.data.data.predicted_class);
+            setOutput(result[response.data.data.predicted_class]);
             reset();
         } catch (error) {
             console.error("Error sending data:", error.response ? error.response.data : error);
@@ -53,7 +53,7 @@ export const Form = () => {
                 <img src="/loader.gif" alt="Loading..." className={styles["output_img"]} />
             </div>}
             {!loading && <div className={styles["output"]}>
-                {result[output]}
+                {output}
             </div>}
         </div>
     )
