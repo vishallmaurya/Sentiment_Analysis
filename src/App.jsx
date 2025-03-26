@@ -4,6 +4,7 @@ import { AppLayout } from "./layout/AppLayout"
 import { getGoogleClientId } from "../src/utils/EnvLoader.js";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { Loader } from './Pages/Loader/index.jsx';
+import { ErrorPage } from './Pages/Error/index.jsx';
 
 const Home = lazy(() => 
   import("./Pages/Home/index.jsx").then(module => ({ default: module.Home }))
@@ -26,7 +27,7 @@ function App() {
     {
       path: "/",
       element: (<AppLayout />),
-      errorElement: (<div>Error</div>),
+      errorElement: (<ErrorPage/>),
       children: [
         {path: "/",element: (<Home />)},
         {
