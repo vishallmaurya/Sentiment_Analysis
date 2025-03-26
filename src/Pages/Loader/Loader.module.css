@@ -3,18 +3,20 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background: #121212;
   }
   
   .loader {
     text-align: center;
     max-width: 300px;
     width: 100%;
+    position: relative;
   }
   
   .logo {
     margin-bottom: 2rem;
     animation: float 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 8px rgba(100, 210, 255, 0.4));
   }
   
   .logoSvg {
@@ -24,7 +26,7 @@
   
   .logoPath {
     fill: none;
-    stroke: #4a6cf7;
+    stroke: #64d2ff;
     stroke-width: 2;
     stroke-dasharray: 150;
     stroke-dashoffset: 150;
@@ -32,17 +34,19 @@
   }
   
   .loadingText {
-    font-size: 1.5rem;
-    color: #333;
+    font-size: 1.1rem;
+    color: #e0e0e0;
     margin-bottom: 1.5rem;
-    font-weight: 500;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    text-shadow: 0 0 8px rgba(100, 210, 255, 0.3);
   }
   
   .progressBar {
     width: 100%;
-    height: 6px;
-    background: #e0e0e0;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 3px;
     overflow: hidden;
   }
@@ -50,11 +54,28 @@
   .progress {
     height: 100%;
     width: 0;
-    background: linear-gradient(90deg, #4a6cf7, #6a11cb);
-    animation: progress 2s ease-in-out infinite;
+    background: linear-gradient(90deg, 
+      rgba(100, 210, 255, 0) 0%, 
+      #64d2ff 50%, 
+      rgba(100, 210, 255, 0) 100%);
+    animation: progress 2.5s cubic-bezier(0.65, 0, 0.35, 1) infinite;
     border-radius: 3px;
   }
   
+  .pulse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: rgba(100, 210, 255, 0.03);
+    animation: pulse 3s ease-out infinite;
+    z-index: -1;
+  }
+  
+  /* Animations */
   @keyframes draw {
     to {
       stroke-dashoffset: 0;
@@ -63,13 +84,13 @@
   
   @keyframes colorChange {
     0% {
-      stroke: #4a6cf7;
+      stroke: #64d2ff;
     }
     50% {
-      stroke: #6a11cb;
+      stroke: #a78bfa;
     }
     100% {
-      stroke: #4a6cf7;
+      stroke: #64d2ff;
     }
   }
   
@@ -78,7 +99,7 @@
       transform: translateY(0px);
     }
     50% {
-      transform: translateY(-15px);
+      transform: translateY(-10px);
     }
     100% {
       transform: translateY(0px);
@@ -97,5 +118,16 @@
     100% {
       width: 0;
       left: 100%;
+    }
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: translate(-50%, -50%) scale(0.8);
+      opacity: 0.8;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(1.4);
+      opacity: 0;
     }
   }

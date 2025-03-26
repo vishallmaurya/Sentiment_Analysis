@@ -9,10 +9,11 @@ export const Loader = () => {
             <path d="M25,5 L45,25 L25,45 L5,25 Z" className={styles.logoPath} />
           </svg>
         </div>
-        <div className={styles.loadingText}>Loading...</div>
+        <div className={styles.loadingText}>Loading your experience...</div>
         <div className={styles.progressBar}>
           <div className={styles.progress}></div>
         </div>
+        <div className={styles.pulse}></div>
       </div>
     </div>
   );
