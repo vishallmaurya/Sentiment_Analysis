@@ -4,9 +4,9 @@ import { AppLayout } from "./layout/AppLayout"
 import { getGoogleClientId } from "../src/utils/EnvLoader.js";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
-const Home = lazy(() => import("./Pages/Home"));
-const Login = lazy(() => import("./Pages/Login"));
-const Profile = lazy(() => import("./Pages/Profile"));
+const Home = lazy(() => import("./Pages/Home/index.jsx"));
+const Login = lazy(() => import("./Pages/Login/index.jsx"));
+const Profile = lazy(() => import("./Pages/Profile/index.jsx"));
 const ResetPassword = lazy(() => import("./Pages/ResetPassword/index.jsx"));
 
 // import { Home } from './Pages/Home'
@@ -15,7 +15,7 @@ const ResetPassword = lazy(() => import("./Pages/ResetPassword/index.jsx"));
 // import { ResetPassword } from './Pages/ResetPassword/index.jsx'
 
 const ErrorFallback = ({ error }) => (
-  <div style={{ color: "red", textAlign: "center" }}>
+  <div style={{textAlign: "center" }}>
     <h2>Something went wrong!</h2>
     <p>{error?.message || "An unknown error occurred"}</p>
   </div>
