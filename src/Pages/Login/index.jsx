@@ -30,6 +30,7 @@ export const Login = () => {
     const sendData = async () => {
         try {
             if (!showForgotPwd) {
+
                 const data = { ...loginData, ...gmailLogin };
                 const response = await axios.post(getBackendURL() + "/users/register", data, { withCredentials: true });
                 dispatch(setUser(response.data));
@@ -44,6 +45,11 @@ export const Login = () => {
     };
 
     const onSubmit = (data) => {
+        if (Object.values(data).some(value => value === "" || value === null || value === undefined)) {
+            setLoginMsg({ msg: "Please fill the required field", color: "red" });
+            return;
+        }
+
         if(!showForgotPwd) 
             setLoginData(data);
         else 
