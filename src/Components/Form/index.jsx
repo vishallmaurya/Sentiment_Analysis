@@ -29,9 +29,8 @@ export const Form = () => {
     const sendData = async (data) => {
         try {
             setLoading(true);            
-            const url = "https://tweetssentimentpredictor.onrender.com/predict";// getBackendURL() + "/api/predict";
+            const url = getBackendURL() + "/api/predict";
             const response = await axios.post(url , data, { withCredentials: true });
-            console.log("Response: ",response);
             
             dispatch(setSentiment(response.data.data.predicted_class));
             setOutput(response.data.data.predicted_class);
