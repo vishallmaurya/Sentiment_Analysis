@@ -4,65 +4,40 @@ import { AppLayout } from "./layout/AppLayout"
 import { getGoogleClientId } from "../src/utils/EnvLoader.js";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
-const {Home} = lazy(() => import("./Pages/Home/index.jsx"));
-const {Login} = lazy(() => import("./Pages/Login/index.jsx"));
-const {Profile} = lazy(() => import("./Pages/Profile/index.jsx"));
-const {ResetPassword} = lazy(() => import("./Pages/ResetPassword/index.jsx"));
-
-// import { Home } from './Pages/Home'
-// import { Login } from './Pages/Login'
-// import { Profile } from './Pages/Profile'
-// import { ResetPassword } from './Pages/ResetPassword/index.jsx'
-
-const ErrorFallback = ({ error }) => (
-  <div style={{textAlign: "center" }}>
-    <h2>Something went wrong!</h2>
-    <p>{error?.message || "An unknown error occurred"}</p>
-  </div>
+const Home = lazy(() => 
+  import("./Pages/Home/index.jsx").then(module => ({ default: module.Home }))
 );
 
+const Login = lazy(() => 
+  import("./Pages/Login/index.jsx").then(module => ({ default: module.Login }))
+);
+
+const Profile = lazy(() => 
+  import("./Pages/Profile/index.jsx").then(module => ({ default: module.Profile }))
+);
+
+const ResetPassword = lazy(() => 
+  import("./Pages/ResetPassword/index.jsx").then(module => ({ default: module.ResetPassword }))
+);
 
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
       element: (<AppLayout />),
-      errorElement: (<ErrorFallback/>),
+      errorElement: (<div>Error</div>),
       children: [
-        {
-          path: "/",
-          element: (
-            <Suspense fallback={<div>Loading Home...</div>}>
-              <Home />
-            </Suspense>
-          ),
-        },
+        {path: "/",element: (<Home />)},
         {
           path: "/login",
           element: (
             <GoogleOAuthProvider clientId={getGoogleClientId()}>
-              <Suspense fallback={<div>Loading Login...</div>}>
-                <Login />
-              </Suspense>
+              <Login />
             </GoogleOAuthProvider>
           )
         },
-        {
-          path: "/profile", 
-          element: (
-            <Suspense fallback={<div>Loading Profile...</div>}>
-              <Profile />
-            </Suspense>
-          ),
-         },
-        {
-          path: "/reset-password/:token", 
-          element: (
-            <Suspense fallback={<div>Loading Reset Password...</div>}>
-              <ResetPassword />
-            </Suspense>
-          ),
-        }
+        { path: "/profile", element: (<Profile/>) },
+        { path: "/reset-password/:token", element: (<ResetPassword/>) }
       ]
     }
   ])  
