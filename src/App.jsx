@@ -4,10 +4,10 @@ import { AppLayout } from "./layout/AppLayout"
 import { getGoogleClientId } from "../src/utils/EnvLoader.js";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
-const Home = lazy(() => import("./Pages/Home/index.jsx"));
-const Login = lazy(() => import("./Pages/Login/index.jsx"));
-const Profile = lazy(() => import("./Pages/Profile/index.jsx"));
-const ResetPassword = lazy(() => import("./Pages/ResetPassword/index.jsx"));
+const {Home} = lazy(() => import("./Pages/Home/index.jsx"));
+const {Login} = lazy(() => import("./Pages/Login/index.jsx"));
+const {Profile} = lazy(() => import("./Pages/Profile/index.jsx"));
+const {ResetPassword} = lazy(() => import("./Pages/ResetPassword/index.jsx"));
 
 // import { Home } from './Pages/Home'
 // import { Login } from './Pages/Login'
