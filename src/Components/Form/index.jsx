@@ -30,6 +30,8 @@ export const Form = () => {
         try {
             setLoading(true);
             const response = await axios.post(getBackendURL() + "/api/predict", data, { withCredentials: true });
+            console.log("Response: ",response);
+            
             dispatch(setSentiment(response.data.data.predicted_class));
             setOutput(response.data.data.predicted_class);
             reset();
