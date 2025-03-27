@@ -26,23 +26,74 @@ export const Form = () => {
         sendData(data);
     };
 
+    // const sendData = async (data) => {
+    //     try {
+    //         setLoading(true);            
+    //         const url = getBackendURL() + "/api/predict";
+    //         const response = await axios.post(url , data, { withCredentials: true });
+            
+    //         dispatch(setSentiment(response.data.data.predicted_class));
+    //         setOutput(result[response.data.data.predicted_class]);
+    //         reset();
+    //     } catch (error) {
+    //         console.error("Error sending data:", error.response ? error.response.data : error);
+    //     }
+    //      finally {
+    //         setLoading(false);
+    //     }
+    // };
+
     const sendData = async (data) => {
         try {
-            setLoading(true);            
-            const url = getBackendURL() + "/api/predict";
-            const response = await axios.post(url , data, { withCredentials: true });
+            setLoading(true);
+            setOutput(null); // Clear previous results
             
-            dispatch(setSentiment(response.data.data.predicted_class));
-            setOutput(result[response.data.data.predicted_class]);
-            reset();
+            // 1. Initiate processing
+            const initResponse = await axios.post(
+                getBackendURL() + "/api/predict",
+                data,
+                { withCredentials: true, timeout: 10000 }
+            );
+            
+            const taskId = initResponse.data.task_id;
+            let result;
+            let attempts = 0;
+            const maxAttempts = 12; // 1 minute timeout (5s intervals)
+            
+            // 2. Poll for results
+            while (attempts < maxAttempts && !result) {
+                attempts++;
+                await new Promise(resolve => setTimeout(resolve, 5000));
+                
+                try {
+                    const statusResponse = await axios.get(
+                        `${getBackendURL()}/api/predict/status/${taskId}`,
+                        { withCredentials: true }
+                    );
+                    
+                    if (statusResponse.data.data?.predicted_class !== undefined) {
+                        result = statusResponse.data.data;
+                        break;
+                    }
+                } catch (pollError) {
+                    console.error("Polling error:", pollError);
+                }
+            }
+            
+            if (!result) throw new Error("Analysis timed out");
+            
+            // 3. Update state
+            dispatch(setSentiment(result.predicted_class));
+            setOutput(result[result.predicted_class]);
+            
         } catch (error) {
-            console.error("Error sending data:", error.response ? error.response.data : error);
-        }
-         finally {
+            console.error("Error:", error.response ? error.response.data : error);
+            setOutput("Error: " + (error.response?.data?.message || error.message));
+        } finally {
             setLoading(false);
         }
     };
-
+    
     return (
         <div className={styles["form-container"]}>
             <form onSubmit={handleSubmit(onSubmit)} className={styles["form"]}>
