@@ -39,9 +39,9 @@ function App() {
           )
         },
         { path: "/profile", element: (<Profile/>) },
-        { path: "/reset-password/:token", element: (<ResetPassword/>) }
-      ]
-    }
+      ],
+    },
+    { path: "/reset-password/:token", element: (<ResetPassword/>) }
   ])  
 
 
