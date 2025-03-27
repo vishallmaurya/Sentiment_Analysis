@@ -35,7 +35,6 @@ export const Login = () => {
     const onSubmit = async (data) => {
         if (isLoading) return ;
 
-        console.log(data);
         if ((!showForgotPwd && Object.values(data).some(value => !value)) || (showForgotPwd && data.email === "")) {
             setLoginMsg({ msg: "Please fill the required field", color: "red" });
             return;
