@@ -51,7 +51,7 @@ export const Form = () => {
             const initResponse = await axios.post(
                 getBackendURL() + "/api/predict",
                 data,
-                { withCredentials: true, timeout: 10000 }
+                { withCredentials: true, timeout: 100000 }
             );
             
             const taskId = initResponse.data.task_id;
