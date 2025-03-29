@@ -46,9 +46,8 @@ export const Form = () => {
     const sendData = async (data) => {
         try {
             setLoading(true);
-            setOutput(null); // Clear previous results
+            setOutput(null); 
             
-            // 1. Initiate processing
             const initResponse = await axios.post(
                 getBackendURL() + "/api/predict",
                 data,
@@ -58,12 +57,11 @@ export const Form = () => {
             const taskId = initResponse.data.task_id;
             let result;
             let attempts = 0;
-            const maxAttempts = 12; // 1 minute timeout (5s intervals)
+            const maxAttempts = 12; //
             
-            // 2. Poll for results
             while (attempts < maxAttempts && !result) {
                 attempts++;
-                await new Promise(resolve => setTimeout(resolve, 5000));
+                await new Promise(resolve => setTimeout(resolve, 50000));
                 
                 try {
                     const statusResponse = await axios.get(
