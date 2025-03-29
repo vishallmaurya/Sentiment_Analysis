@@ -12,7 +12,12 @@ export const Header = () => {
 
     const logoutHandler = async () => {
         try {
-            const response = await axios.post(getBackendURL() + "/users/logout", {}, {withCredentials: true });
+            const response = await axios.post(getBackendURL() + "/users/logout", {}, {headers: {
+                "Content-Type": "application/json",
+                "Cookie": document.cookie,  // Send cookies as a header
+            },
+                withCredentials: true
+            });
             dispatch(setUser(null));
         } catch (error) {
             console.error("Error occurs during logout!! ", error);
