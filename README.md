@@ -19,14 +19,10 @@ This is the **frontend** of the Sentiment Analysis Web Application, built using 
 - **Google OAuth** - For authentication
 - **AWS Hosting** - Ensuring smooth and scalable deployment
 
-## 📂 Project Structure
-
-
 ## 🏗 Setup & Installation
 ### 1️⃣ Clone the Repository
 ```bash
 git clone https://github.com/vishallmaurya/Sentiment_Analysis
-cd client
 ```
 
 ### 2️⃣ Install Dependencies
@@ -55,6 +51,4 @@ npm start
 - Implement authentication-based personalized analysis.
 - Add multi-language support.
 
----
 🌟 **A seamless, responsive, and secure frontend for real-time sentiment analysis using MERN and Google OAuth!**
-```
