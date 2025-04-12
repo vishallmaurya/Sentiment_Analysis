@@ -7,6 +7,8 @@ export default defineConfig({
     headers: {
       "Cross-Origin-Embedder-Policy": "credentialless",
     },
+    host: true,
+    port: 5173
   },
   build: {
     target: "esnext",
