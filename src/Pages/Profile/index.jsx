@@ -13,10 +13,6 @@ export const Profile = () => {
     const fetchTweetsHistory = async () => {
         try {
             const response = await axios.post(getBackendURL() + "/users/tweets", {}, {
-                // headers: {
-                // "Content-Type": "application/json",
-                // "Cookie": document.cookie,  // Send cookies as a header
-                // },
                 withCredentials: true
             });
             setHistoryData(response.data.data);

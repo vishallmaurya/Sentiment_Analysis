@@ -15,12 +15,7 @@ const sentimentSlice = createSlice({
 
 const getUser = async () => {
     try {
-        const response = await axios.post(getBackendURL() + "/users/current-user", {}, {
-            // headers: {
-            // "Content-Type": "application/json",
-            // "Cookie": document.cookie,  // Send cookies as a header
-            // },
-            
+        const response = await axios.post(getBackendURL() + "/users/current-user", {}, {            
             withCredentials: true
         });
         return response.data;

@@ -78,10 +78,6 @@ export const Login = () => {
     const handleForgotPassword = async (forgotPwdData) => {
         try {
             await axios.post(getBackendURL() + "/users/forget-password", forgotPwdData, {
-                // headers: {
-                // "Content-Type": "application/json",
-                // "Cookie": document.cookie,  // Send cookies as a header
-                // },
                 withCredentials: true
             });
             setLoginMsg({ msg: "password reset link is sent to your email id!!", color: "green" });
