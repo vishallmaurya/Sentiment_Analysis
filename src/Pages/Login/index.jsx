@@ -33,21 +33,19 @@ export const Login = () => {
     };
 
     const onSubmit = async (data) => {
-        if (isLoading) return ;
+        setIsLoading(true);
 
         if ((!showForgotPwd && Object.values(data).some(value => !value)) || (showForgotPwd && data.email === "")) {
             setLoginMsg({ msg: "Please fill the required field", color: "red" });
-            return;
         } else {
-            setIsLoading(true);
             if (!showForgotPwd)
                 await handleLogin(data);
             else {
                 await handleForgotPassword({email: data.email});
             }
             reset();
-            setIsLoading(false);
         }
+        setIsLoading(false);
     };
 
     const handleGoogleLoginSuccess = async (tokenResponse) => {
@@ -99,18 +97,15 @@ export const Login = () => {
                 <form onSubmit={handleSubmit(onSubmit)} className={`${styles["login-form-container"]} ${styles["align"]}`}>
                     <input type="text" placeholder="e.g. abc@gmail.com" {...register("email")} className={styles["login-input"]} />
                     <input type="password" placeholder="123@password" {...register("password")} className={styles["login-input"]} />
-                    { !isLoading &&
-                        <button className={`${styles["login-input"]} ${styles["login-btn"]}`}>Login</button>
-                    }
+                    <button disabled={isLoading} className={`${styles["login-input"]} ${styles["login-btn"]}`}>Login</button>
                 </form>
                 <div className={styles["forgot-pwd-container"]}> <span onClick={() => setShowForgotPwd(true)} className={styles["forgot-pwd"]}>forgot password?</span></div>
                 <div className={`${styles["partition"]}`}>
                     or continue with
                 </div>
-                {!isLoading && 
-                <button className={`${styles["login-input"]} ${styles["login-btn"]}`} onClick={() => googleLogin()}>
+                <button disabled={isLoading} className={`${styles["login-input"]} ${styles["login-btn"]}`} onClick={() => googleLogin()}>
                     Google
-                </button>}
+                </button>
             </div>}
 
             {showForgotPwd && (
@@ -118,9 +113,7 @@ export const Login = () => {
                     <h2 style={{ marginBottom: "3rem" }}>Reset Password</h2>
                     <form onSubmit={handleSubmit(onSubmit)} className={`${styles["login-form-container"]} ${styles["align"]}`}>
                         <input type="text" placeholder="e.g. abc@gmail.com" {...register("email")} className={styles["login-input"]} />
-                        {!isLoading &&
-                            <button className={`${styles["login-input"]} ${styles["login-btn"]}`}>Submit</button>
-                        }
+                        <button disabled={isLoading} className={`${styles["login-input"]} ${styles["login-btn"]}`}>Submit</button>
                     </form>
                     <button className={`${styles["login-input"]} ${styles["login-btn"]}`} onClick={()=>{setShowForgotPwd(false)}}>Cancel</button>
                 </div>
